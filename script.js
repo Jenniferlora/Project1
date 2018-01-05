@@ -59,12 +59,7 @@ getDashes();
 function writeLetter(event) {
 	var clicked = event.target.textContent;
 	var spaces = document.querySelectorAll('.spaces');
-	if (this.textContent) {
-		console.log(spaces.textContent);
-		space.textContent = splitWord[this];
-	} else {
-		wrongLetter++;
-		addLimbs();
-	}
+	spaces.forEach();
 }
+
 function play() {}
