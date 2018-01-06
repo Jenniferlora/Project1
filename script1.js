@@ -1,12 +1,11 @@
-var alphabet = 'abcdefghijklmnopqrstuvwxyz';
-var letters = alphabet.split('');
-// var clicks = 0;
-var wrongLetter = 0;
-var clicked;
-var currentWord;
-var goodmove = 0;
-var badmove = 0;
-var currentLength;
+var alphabet = 'abcdefghijklmnopqrstuvwxyz'; //alphabet
+var letters = alphabet.split(''); //splits into an array
+var wrongLetter = 0; //counter for how many wong letters were clicked
+var clicked; //clicked item
+var currentWord; //current word
+var goodmove = 0; //counter for each good move
+var badmove = 0; //counter for each bad move
+var currentLength; //length of current word
 
 //wordbank
 var words = [
@@ -22,7 +21,6 @@ var words = [
 var $letterBox = $('#letterBox');
 
 //This function will make a new div for each letter,display the letter, and appended to letterBox
-
 function getLetters() {
 	letters.forEach(function(letter) {
 		var $eachLetter = $('<div>');
@@ -30,7 +28,6 @@ function getLetters() {
 		$eachLetter.text(letter);
 		$eachLetter.css('cursor', 'pointer');
 		$eachLetter.on('click', play);
-		// $eachLetter.on('click', addLimbs);
 		$letterBox.append($eachLetter);
 	});
 }
@@ -47,7 +44,7 @@ function addLimbs() {
 //Generates a random word.
 function getWord() {
 	var r = Math.floor(Math.random() * words.length);
-	currentWord = words[r];
+	currentWord = words[r].toLowerCase();
 	getDashes();
 }
 getWord();
@@ -74,19 +71,20 @@ function writeLetter() {
 		if ($this.attr('data') == clicked) {
 			$this.text(clicked);
 			goodmove++;
-			console.log('g' + goodmove);
 		}
 	});
 }
 
-//This function checks to see if the current word includes the letter
+//This function checks to see if the current word includes the letter that was clicked,
 //and fires the appropiate next step functions.
-
 function play(event) {
 	clicked = event.target.textContent;
+
 	console.log(currentWord);
 	console.log(clicked);
+
 	event.target.remove('click', play);
+
 	if (currentWord.includes(clicked)) {
 		console.log('Hey,I wrote a letter');
 		writeLetter();
@@ -98,29 +96,43 @@ function play(event) {
 		lost();
 	}
 }
+
 //This function alerts the user if they won.
 function checkForWin() {
-	console.log(goodmove);
-	console.log(currentLength);
 	if (goodmove >= currentLength) {
 		alert('You win!');
-		getWord();
+		clear();
 	}
 }
+
 //This function alerts the user if they lost.
 function lost() {
 	if (badmove >= currentLength || badmove == 6) {
 		alert('You lost!');
 		clear();
-		start();
 	}
 }
+
+//This function starts the game.
 function start() {
-	getLetters();
-	getWord();
+	getLetters(); //generates all new letters.
+	getWord(); //generates new random word.
 }
 
+//This function clears the letterbox, the dahed spaces, and image, to their initial values.
 function clear() {
-	var all = document.getElementsByClassName('el');
-	all.remove();
+	badmove = 0;
+	goodmove = 0;
+
+	var letterbox = document.querySelector('#letterBox');
+	letterbox.innerHTML = '';
+
+	var letterdash = document.querySelector('#letterdash');
+	letterdash.innerHTML = '';
+
+	wrongLetter = 0;
+	var hangman = $('#hangman');
+	hangman.attr('src', './images/Hangman' + wrongLetter + '.png');
+
+	start();
 }
