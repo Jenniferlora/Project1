@@ -206,6 +206,7 @@ var words = [
 		difficulty: 'medium',
 	},
 ];
+console.log(words.length);
 
 // fiddle seashell jog
 // seesaw nap cheerleader

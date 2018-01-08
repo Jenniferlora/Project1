@@ -4,6 +4,7 @@ window.onload = function(e) {
 	var wrongLetter = 0; //counter for how many wong letters were clicked
 	var clicked; //clicked item
 	var currentWord; //current word
+	var currentHint;
 	var goodmove = 0; //counter for each good move
 	var badmove = 0; //counter for each bad move
 	var currentLength; //length of current word
@@ -49,6 +50,7 @@ window.onload = function(e) {
 
 	//This function will make placeholders with dashes based on length of word.
 	function getDashes() {
+		giveHint();
 		currentLength = currentWord.length;
 		var splitWord = currentWord.split('');
 		splitWord.forEach(function(letter) {
@@ -189,5 +191,11 @@ window.onload = function(e) {
 		won = 0;
 		loss = 0;
 		scoreBoard();
+	}
+
+	function giveHint() {
+		var display = 'Hint: ' + currentHint;
+		var $hintDisplay = $('#hintDisplay');
+		$hintDisplay.text(display);
 	}
 };
