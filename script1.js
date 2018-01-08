@@ -6,7 +6,13 @@ var currentWord; //current word
 var goodmove = 0; //counter for each good move
 var badmove = 0; //counter for each bad move
 var currentLength; //length of current word
-
+var applause = new Audio('./sound/lightapplause.mp3');
+var right = new Audio('./sound/right.wav');
+var wrong = new Audio('./sound/wrong.wav');
+var points = new Audio('./sound/points.wav');
+var won = 0;
+var loss = 0;
+var turn = 0;
 //wordbank
 var words = [
 	'snag',
@@ -16,6 +22,15 @@ var words = [
 	'password',
 	'newsletter',
 	'bookend',
+	'fly',
+	'fang',
+	'bicycle',
+	'bear',
+	'cape',
+	'puppet',
+	'piano',
+	'lipstick',
+	'salute',
 ];
 //container for letters
 var $letterBox = $('#letterBox');
@@ -70,7 +85,9 @@ function writeLetter() {
 		$this = $(this);
 		if ($this.attr('data') == clicked) {
 			$this.text(clicked);
-			goodmove++;
+			right.play();
+			goodmove++; //needs to be here so it can capture any instance of multiple letters
+			setTimeout(checkForScore(), 2000); //check for win conditions
 		}
 	});
 }
@@ -83,33 +100,57 @@ function play(event) {
 	console.log(currentWord);
 	console.log(clicked);
 
-	event.target.remove('click', play);
+	event.target.remove(); //removes letter from dashboard after it's been clicked.
 
 	if (currentWord.includes(clicked)) {
 		console.log('Hey,I wrote a letter');
-		writeLetter();
-		checkForWin();
+		writeLetter(); //writes letter
 	} else {
-		badmove++;
-		addLimbs();
+		wrong.play();
+		badmove++; //increment bad move count
+		addLimbs(); //change hangman picture
 		console.log('Hey,I added a Limb');
-		lost();
+		lost(); //alerts user they lost
 	}
 }
 
 //This function alerts the user if they won.
-function checkForWin() {
+function checkForScore() {
 	if (goodmove >= currentLength) {
-		alert('You win!');
-		clear();
+		won++;
+		scoreBoard();
+		points.play();
+
+		setTimeout(function() {
+			alert(`"That's correct, Good Job!"`);
+		}, 100);
+
+		setTimeout(function() {
+			clear();
+		}, 200);
+		turn++;
+		setTimeout(function() {
+			checkforWin();
+		}, 300);
 	}
 }
 
 //This function alerts the user if they lost.
 function lost() {
-	if (badmove >= currentLength || badmove == 6) {
-		alert('You lost!');
-		clear();
+	if (badmove == 6) {
+		loss++;
+		scoreBoard();
+		setTimeout(function() {
+			alert(`That's wrong! The answer was ` + currentWord + '.');
+		}, 100);
+
+		setTimeout(function() {
+			clear();
+		}, 200);
+		turn++;
+		setTimeout(function() {
+			checkforWin();
+		}, 300);
 	}
 }
 
@@ -135,4 +176,24 @@ function clear() {
 	hangman.attr('src', './images/Hangman' + wrongLetter + '.png');
 
 	start();
+}
+var $won = $('#won');
+var $loss = $('#loss');
+
+function scoreBoard() {
+	var winning = 'won:' + won;
+	var losing = 'lost:' + loss;
+	$won.text(winning);
+	$loss.text(losing);
+}
+
+function checkforWin() {
+	if (turn == 3) {
+		if (won >= 2) {
+			applause.play();
+			alert('You won the game!');
+		} else {
+			alert('You lost the game');
+		}
+	}
 }
