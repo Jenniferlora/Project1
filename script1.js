@@ -12,6 +12,7 @@ window.onload = function(e) {
 	var right = new Audio('./sound/right.wav');
 	var wrong = new Audio('./sound/wrong.wav');
 	var points = new Audio('./sound/points.wav');
+	var failed = new Audio('./sound/failed.wav');
 	var won = 0;
 	var loss = 0;
 	var turn = 0;
@@ -180,6 +181,7 @@ window.onload = function(e) {
 
 				alert('You won the game!');
 			} else {
+				failed.play();
 				resetScores();
 				alert('You lost the game');
 			}

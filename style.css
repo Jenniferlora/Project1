@@ -3,6 +3,7 @@ body {
 	padding: 0;
 	height: 100v;
 	background-color: #d3dbe8;
+	font-family: 'Lora', serif;
 }
 
 #container {
@@ -42,6 +43,11 @@ body {
 	font-weight: 900px;
 	text-align: center;
 	border-radius: 10%;
+}
+
+.letters:hover {
+	transform: scale(1.1);
+	transition: 2s;
 }
 
 #hangman {
@@ -108,4 +114,5 @@ body {
 	border-radius: 5%;
 	vertical-align: center;
 	line-height: 50px;
+	/*font-weight: 1500px;*/
 }

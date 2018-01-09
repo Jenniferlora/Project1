@@ -8,7 +8,7 @@ var words = [
 	{
 		word: 'twist',
 		hint: 'action',
-		difficulty: 'medium',
+		difficulty: 'difficult',
 	},
 	{
 		word: 'rhinoceros',
@@ -27,7 +27,7 @@ var words = [
 	},
 	{
 		word: 'fetch',
-		hint: 'similar to acquire',
+		hint: 'to get something',
 		difficulty: 'medium',
 	},
 	{
@@ -137,7 +137,7 @@ var words = [
 	},
 	{
 		word: 'bookend',
-		hint: 'book',
+		hint: 'on a bookshelf',
 		difficulty: 'medium',
 	},
 	{
@@ -171,7 +171,7 @@ var words = [
 		difficulty: 'difficult',
 	},
 	{
-		word: 'frankestein',
+		word: 'frankenstein',
 		hint: 'character',
 		difficulty: 'difficult',
 	},
@@ -187,7 +187,7 @@ var words = [
 	},
 	{
 		word: 'alarm',
-		hint: 'rings',
+		hint: 'it rings',
 		difficulty: 'easy',
 	},
 	{
@@ -202,7 +202,7 @@ var words = [
 	},
 	{
 		word: 'pajamas',
-		hint: 'item',
+		hint: 'clothing',
 		difficulty: 'medium',
 	},
 ];
@@ -351,31 +351,4 @@ console.log(words.length);
 // capitalism step - daughter applause
 // jig jade blunt
 // application rag squint
-// intern sow 's ear brainstorm
-// sling half pinch
-// leak skating rink jog
-// jammin ' shrink ray dent
-// scoundrel escalator cell phone charger
-// kitchen knife set sequins ladder rung
-// Catchphrase Words: Hard
-// Copyright© 2012 The Game Gal | www.thegamegal.com
-// flu scuff mark mast
-// sash modern ginger
-// clockwork mess mascot
-// runt chain scar tissue
-// suntan pomp scramble
-// sentence first mate cuff
-// cuticle fortnight riddle
-// spool full moon forever
-// rut hem new
-// freight train diver fringe
-// humidifier handwriting dawn
-// dimple gray hairs hedge
-// plank race publisher
-// fizz gem ditch
-// wool plaid fancy
-// ebony and ivory feast Murphy 's Law
-// billboard flush inconceivable
-// tide midsummer population
-// my elm organ
-// flannel hatch booth
+// inter
